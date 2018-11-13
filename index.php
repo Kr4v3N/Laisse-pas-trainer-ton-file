@@ -1,68 +1,57 @@
-<?php
-$allFiles = scandir("Upload");
-$files = preg_grep("/image/", $allFiles);
-?>
-
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Upload</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.7/css/bootstrap.min.css"/>
+    <title> Multi Uploader </title>
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
 </head>
-
 <body>
-
+<h1 class="text-center"> Multi Uploader </h1>
 <div class="row">
-
-
-    <form action="function.php" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="MAX_FILE_SIZE" value="1048576">
-        <div class="file-field input-field">
-            <div class="btn">
-                <input type="file" name="img[]"  id="img"  multiple="multiple" />
-                <span>Image à uploader</span>
-            </div>
-            <div class="file-path-wrapper">
-                <input class="file-path validate" type="text" placeholder="Upload one or more files">
-            </div>
-        </div>
-        <button class="btn" type="submit" name="action">Submit<i class="material-icons right">send</i>
-        </button>
-    </form>
+    <div class="col-md-4 col-md-offset-4">
+        <form action="upload.php" method="post" enctype="multipart/form-data">
+            <fieldset>
+                <legend> Ajoutez vos fichiers </legend>
+                <div class="form-group">
+                    <label for="file" class="maximal" >Taille maximale du fichier 1Mo:</label>
+                    <input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
+                    <input type="file" class="file" name="files[]" id="file" multiple/>
+                </div>
+                <input type="submit" value="Envoyer" class="btn btn-primary"/>
+            </fieldset>
+        </form>
+    </div>
 </div>
-<div class="row">
-    <?php foreach ($files as $file): ?>
+<?php
 
-        <div class="col s12 m6 l3">
-            <div class="card">
-                <div class="card-image">
-                    <img src="Upload/<?php echo $file; ?>" class="responsive-img " alt="">
-                </div>
-                <div class="card-card-content">
-                    <p class="center-align"><?php echo $file; ?></p>
-                </div>
-                <div class="card-action">
-                    <a href="delete.php?id=<?php echo $file;?>" class="btn btn-danger" role="button">Supprimer</a>
-                </div>
-            </div>
-        </div>
-
-    <?php endforeach; ?>
-</div>
+$dir ="uploads";
+$scan = array_diff(scandir($dir), array('..','.'));
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+if(is_array($scan)){
+    echo "<div class='container'>";
+    foreach($scan as $image){
+        echo
+            "<div class='col-md-3'>".
+            "<div class='panel panel-default'>".
+
+            "<img src='uploads/$image' style='width: 25%'>".
+            "</div>".
+            "<div class='panel-body'>".
+            "<p>Nom : $image</p>".
+            "<a href='delete.php?file=$image' class='btn btn-danger'>Supprimer</a>".
+            "</div>".
+            "</div>";
+
+    }
+    echo "</div> ";
+}
+?>
 </body>
 </html>
-
+<?php
 

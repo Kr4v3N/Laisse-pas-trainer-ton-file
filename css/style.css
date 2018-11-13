@@ -1,0 +1,17 @@
+form{
+    margin: 50px 2px;
+}
+
+.btn-primary {
+    background-color: greenyellow;
+    text-decoration: none;
+    width: 150px;
+    height: 60px;
+    font-size: large;
+    border-radius: 10px;
+
+}
+
+.file,.maximal, legend {
+    font-size: large;
+}
