@@ -5,8 +5,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.7/css/bootstrap.min.css"/>
-    <title>✨ Error :( ✨</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <title> Error :( </title>
     <link type="text/css" rel="stylesheet" href="css/style.css"/>
 </head>
 
@@ -69,7 +69,7 @@ if (!empty($_FILES['files']['name'][0])){
             "<img src='https://media.giphy.com/media/2ychkCG62XO4U/giphy.gif' class='col-md-4 col-md-offset-4'>".
             "</br>".
             "</br>".
-            "<a href='index.php' class='btn btn-primary'>Revenir à l'accueil</a>";
+            "<a href='index.php' class='btn btn-primary'> Accueil </a>";
     }
 
 
